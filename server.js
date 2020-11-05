@@ -32,6 +32,11 @@ const options = {
     "./src/Controllers/Recyclables/NewRecyclables.js",
     "./src/Controllers/Recyclables/ChangStatusRecy.js",
     "./src/Controllers/Recyclables/GetStatusReady.js",
+    "./src/Controllers/Member/CreateHistory.js",
+    "./src/Controllers/Member/GetHistory.js",
+    "./src/Controllers/Gift/GetGift.js",
+    "./src/Controllers/Recyclables/GetLevel.js",
+    "./src/Controllers/Member/GetScore.js",
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);

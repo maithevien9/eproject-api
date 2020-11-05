@@ -5,6 +5,11 @@ var CheckLogin = require("./User/CheckLogin");
 var NewRecyclables = require("./Recyclables/NewRecyclables");
 var ChangeStatusRece = require("./Recyclables/ChangStatusRecy");
 var getStatusReady = require("./Recyclables/GetStatusReady");
+var CreateHistory = require("./Member/CreateHistory");
+var GetHistory = require("./Member/GetHistory");
+var GetGift = require("./Gift/GetGift");
+var GetLevel = require("./Recyclables/GetLevel");
+var GetSocre = require("./Member/GetScore");
 module.exports = function (app) {
   console.log("this is to to Controllers");
   Login(app);
@@ -14,4 +19,9 @@ module.exports = function (app) {
   NewRecyclables(app);
   ChangeStatusRece(app);
   getStatusReady(app);
+  CreateHistory(app);
+  GetHistory(app);
+  GetGift(app);
+  GetLevel(app);
+  GetSocre(app);
 };

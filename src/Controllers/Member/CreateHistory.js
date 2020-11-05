@@ -1,13 +1,13 @@
 const db = require("../../Connect/Connect");
-const NewRecyclables = require("../../model/Recyclables/NewRecyclables.model");
+const CreateHistory = require("../../model/Member/CreateHistory.model");
 module.exports = function (app) {
   /**
    * @swagger
    *
-   * /NewRecyclables:
+   * /CreateHistory:
    *   post:
    *    tags:
-   *    - Recyclables
+   *    - Member
    *    parameters:
    *        - name: reqBody
    *          description: request Body
@@ -17,26 +17,26 @@ module.exports = function (app) {
    *            properties:
    *              token:
    *                type: string
-   *              IDlevel:
+   *              IDGift:
    *                type: string
-   *              ScoreLv:
+   *              PriceGift:
    *                type: string
    *            required:
    *                - token
-   *                - IDlevel
-   *                - ScoreLv
+   *                - IDGift
+   *                - PriceGift
    *    responses:
    *      '201':
    *        description: A successful response
    *      '422':
    *        description: login already exists
    */
-  app.post("/NewRecyclables", function (req, res) {
-    NewRecyclables(
+  app.post("/CreateHistory", function (req, res) {
+    CreateHistory(
       db,
       req.body.token,
-      req.body.IDlevel,
-      req.body.ScoreLv,
+      req.body.IDGift,
+      req.body.PriceGift,
       function (dataString) {
         res.json({
           dataString: dataString,

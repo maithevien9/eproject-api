@@ -2,8 +2,9 @@ module.exports = function (db, User, PassWord, callback) {
   console.log("this is Register");
   var dataString = "";
   var ID = "";
+
   if (User == null && PassWord == null) {
-    dataString = "KHONG_THANH_CONG";
+    dataString = "KHONG_THANH_CONG1";
     callback(dataString);
   } else {
     var sql = `select ID from user where User = '${User}'`;

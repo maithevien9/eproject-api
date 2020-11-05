@@ -1,11 +1,11 @@
 var jwtDecode = require("jwt-decode");
 module.exports = function (db, Token, callback) {
   var dataString = "";
-
+  var data = [];
   if (Token === "") {
-    dataString = "KHONG_THANH_CONG1";
+    dataString = "KHONG_THANH_CONG";
 
-    callback(dataString);
+    callback(dataString, data);
   } else {
     try {
       var decoded = jwtDecode(Token);
@@ -15,18 +15,14 @@ module.exports = function (db, Token, callback) {
       dataString = "KHONG_THANH_CONG";
     }
     if (dataString != "KHONG_THANH_CONG") {
-      var sql = `SELECT ID, User, PassWord FROM user where ID = ${IDuser}`;
+      var sql = `SELECT score FROM Member where ID = ${IDuser}`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;
         }
-        if (results.length != 0) {
-          dataString = "THANH_CONG";
-          callback(dataString);
-        } else {
-          dataString = "KHONG_THANH_CONG";
-          callback(dataString);
-        }
+        data = JSON.parse(JSON.stringify(results));
+        dataString = "THANH_CONG";
+        callback(dataString, data);
       });
     }
   }
