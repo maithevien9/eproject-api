@@ -10,6 +10,8 @@ var GetHistory = require("./Member/GetHistory");
 var GetGift = require("./Gift/GetGift");
 var GetLevel = require("./Recyclables/GetLevel");
 var GetSocre = require("./Member/GetScore");
+var CreateNotify = require("./Notify/CreateNotity");
+var GetNotify = require("./Notify/GetNotify");
 module.exports = function (app) {
   console.log("this is to to Controllers");
   Login(app);
@@ -24,4 +26,6 @@ module.exports = function (app) {
   GetGift(app);
   GetLevel(app);
   GetSocre(app);
+  CreateNotify(app);
+  GetNotify(app);
 };

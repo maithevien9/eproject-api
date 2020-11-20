@@ -23,10 +23,10 @@ module.exports = function (db, Token, callback) {
           data = JSON.parse(JSON.stringify(results));
           console.log(data.length);
           if (data.length === 0) {
-            dataString = "THANH_CONG";
+            dataString = "Handled";
             callback(dataString, data);
           } else {
-            dataString = "CHO_XU_LY";
+            dataString = "Handling";
             callback(dataString, data);
           }
         }

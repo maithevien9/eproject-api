@@ -37,6 +37,8 @@ const options = {
     "./src/Controllers/Gift/GetGift.js",
     "./src/Controllers/Recyclables/GetLevel.js",
     "./src/Controllers/Member/GetScore.js",
+    "./src/Controllers/Notify/CreateNotity.js",
+    "./src/Controllers/Notify/GetNotify.js",
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);

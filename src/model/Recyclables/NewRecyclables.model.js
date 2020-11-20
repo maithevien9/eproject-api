@@ -1,5 +1,5 @@
 var jwtDecode = require("jwt-decode");
-module.exports = function (db, token, IDlevel, ScoreLv, callback) {
+module.exports = function (db, token, IDlevel, callback) {
   var dataString = "";
   var ID = "";
   if (IDlevel == null && token == null) {
@@ -18,21 +18,13 @@ module.exports = function (db, token, IDlevel, ScoreLv, callback) {
       callback(dataString);
     } else {
       var sql = `insert into recyclables VALUES (null,'${IDlevel}', false, '${ID}')`;
-      var sql2 = `UPDATE member SET Score = Score + ${ScoreLv} WHERE ID =  ${ID}`;
+      // var sql2 = `UPDATE member SET Score = Score + ${ScoreLv} WHERE ID =  ${ID}`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;
         } else {
-          // dataString = "THANH_CONG";
-          // callback(dataString);
-          db.query(sql2, function (err, results, fields) {
-            if (err) {
-              throw err;
-            } else {
-              dataString = "THANH_CONG";
-              callback(dataString);
-            }
-          });
+          dataString = "THANH_CONG";
+          callback(dataString);
         }
       });
     }
