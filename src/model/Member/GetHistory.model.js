@@ -15,7 +15,8 @@ module.exports = function (db, Token, callback) {
       dataString = "KHONG_THANH_CONG";
     }
     if (dataString != "KHONG_THANH_CONG") {
-      var sql = `SELECT * FROM historygift where IDMember = ${IDuser}`;
+      //SELECT historygift.ID , historygift.IDGift, historygift.DateTime , gift.Score, gift.NameGift FROM historygift INNER JOIN gift ON historygift.IDGift = gift.ID WHERE historygift.IDMember = 8
+      var sql = `SELECT historygift.ID , historygift.IDGift, historygift.DateTime , gift.Score, gift.NameGift FROM historygift INNER JOIN gift ON historygift.IDGift = gift.ID WHERE historygift.IDMember =  ${IDuser}`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;
