@@ -35,6 +35,7 @@ module.exports = function (db, token, IDGift, PriceGift, callback) {
     } else {
       var sql = `insert into historygift VALUES (null, ${ID}, ${IDGift}, "${dateTime}")`;
       var sql2 = `UPDATE member SET Score = Score - ${PriceGift} WHERE ID =  ${ID}`;
+      var sql3 = `insert into historyscore value(null, ${ID}, -${PriceGift},"${dateTime}")`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;
@@ -43,8 +44,16 @@ module.exports = function (db, token, IDGift, PriceGift, callback) {
             if (err) {
               throw err;
             } else {
-              dataString = "THANH_CONG";
-              callback(dataString);
+              // dataString = "THANH_CONG";
+              // callback(dataString);
+              db.query(sql3, function (err, results, fields) {
+                if (err) {
+                  throw err;
+                } else {
+                  dataString = "THANH_CONG";
+                  callback(dataString);
+                }
+              });
             }
           });
         }

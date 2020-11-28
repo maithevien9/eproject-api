@@ -39,6 +39,9 @@ const options = {
     "./src/Controllers/Member/GetScore.js",
     "./src/Controllers/Notify/CreateNotity.js",
     "./src/Controllers/Notify/GetNotify.js",
+    "./src/Controllers/Member/getHistoryScrore.js",
+    "./src/Controllers/Recyclables/GetHistoryRecyclables.js",
+    "./src/Controllers/User/GetInfor.js",
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);

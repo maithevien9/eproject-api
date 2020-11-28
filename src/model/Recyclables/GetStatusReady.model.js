@@ -15,7 +15,7 @@ module.exports = function (db, Token, callback) {
       console.log(err);
     }
     if (dataString != "KHONG_THANH_CONG1") {
-      var sql = `select * from recyclables WHERE Status = 0`;
+      var sql = `select * from recyclables WHERE Status = 0 and IDuser = ${ID}`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;

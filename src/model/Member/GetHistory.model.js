@@ -16,7 +16,7 @@ module.exports = function (db, Token, callback) {
     }
     if (dataString != "KHONG_THANH_CONG") {
       //SELECT historygift.ID , historygift.IDGift, historygift.DateTime , gift.Score, gift.NameGift FROM historygift INNER JOIN gift ON historygift.IDGift = gift.ID WHERE historygift.IDMember = 8
-      var sql = `SELECT historygift.ID , historygift.IDGift, historygift.DateTime , gift.Score, gift.NameGift FROM historygift INNER JOIN gift ON historygift.IDGift = gift.ID WHERE historygift.IDMember =  ${IDuser}`;
+      var sql = `SELECT historygift.ID , historygift.IDGift, historygift.DateTime , gift.Score, gift.NameGift FROM historygift INNER JOIN gift ON historygift.IDGift = gift.ID WHERE historygift.IDMember =  ${IDuser}  ORDER BY historygift.DateTime DESC`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;

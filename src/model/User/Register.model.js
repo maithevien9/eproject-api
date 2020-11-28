@@ -27,7 +27,7 @@ module.exports = function (db, User, PassWord, callback) {
                   ID = IDs[0].ID;
                   console.log(ID);
 
-                  sql4 = `insert into inforuser value (${ID} , null,null,null,null,1)`;
+                  sql4 = `insert into inforuser value (${ID} , null,null,null,null,null,1)`;
                   sql5 = ` insert into member VALUES (${ID},0)`;
 
                   db.query(sql4, function (err, results, fields) {

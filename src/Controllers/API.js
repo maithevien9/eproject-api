@@ -12,6 +12,9 @@ var GetLevel = require("./Recyclables/GetLevel");
 var GetSocre = require("./Member/GetScore");
 var CreateNotify = require("./Notify/CreateNotity");
 var GetNotify = require("./Notify/GetNotify");
+var GetHistoryScore = require("./Member/getHistoryScrore");
+var GetHistoryRecyclables = require("./Recyclables/GetHistoryRecyclables");
+var GetInfor = require("./User/GetInfor");
 module.exports = function (app) {
   console.log("this is to to Controllers");
   Login(app);
@@ -28,4 +31,7 @@ module.exports = function (app) {
   GetSocre(app);
   CreateNotify(app);
   GetNotify(app);
+  GetHistoryScore(app);
+  GetHistoryRecyclables(app);
+  GetInfor(app);
 };

@@ -23,14 +23,17 @@ module.exports = function (app) {
    *                type: string
    *              Phone:
    *                type: string
-   *              BirthDay:
+   *              X:
+   *                type: string
+   *              Y:
    *                type: string
    *            required:
    *                - Token
    *                - Name
    *                - Address
    *                - Phone
-   *                - BirthDay
+   *                - X
+   *                - Y
    *    responses:
    *      '201':
    *        description: A successful response
@@ -44,7 +47,8 @@ module.exports = function (app) {
       req.body.Name,
       req.body.Address,
       req.body.Phone,
-      req.body.BirthDay,
+      req.body.X,
+      req.body.Y,
       function (dataString) {
         res.json({
           dataString: dataString,

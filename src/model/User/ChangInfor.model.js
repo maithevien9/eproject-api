@@ -1,16 +1,8 @@
 var jwtDecode = require("jwt-decode");
-module.exports = function (
-  db,
-  Token,
-  Name,
-  Address,
-  Phone,
-  BirthDay,
-  callback
-) {
+module.exports = function (db, Token, Name, Address, Phone, X, Y, callback) {
   var dataString = "";
   var ID = "";
-  console.log(Token + Name + Address + Phone + BirthDay);
+  console.log(Token + Name + Address + Phone + X + Y);
 
   try {
     var decoded = jwtDecode(Token);
@@ -19,7 +11,7 @@ module.exports = function (
   } catch (err) {
     dataString = "KHONG_THANH_CONG";
   }
-  var sql = `UPDATE inforuser SET Name='${Name}', Phone='${Phone}', Address='${Address}', BirthDay = '${BirthDay}' WHERE ID ='${ID}'`;
+  var sql = `UPDATE inforuser SET Name='${Name}', Phone='${Phone}', Address='${Address}', X = '${X}' ,Y = '${Y}' WHERE ID ='${ID}'`;
   db.query(sql, function (err, results, fields) {
     if (err) {
       throw err;
