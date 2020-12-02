@@ -15,6 +15,7 @@ var GetNotify = require("./Notify/GetNotify");
 var GetHistoryScore = require("./Member/getHistoryScrore");
 var GetHistoryRecyclables = require("./Recyclables/GetHistoryRecyclables");
 var GetInfor = require("./User/GetInfor");
+var GetLocalRecy = require("./Carrier/Recyclables/GetLocalRecy");
 module.exports = function (app) {
   console.log("this is to to Controllers");
   Login(app);
@@ -34,4 +35,5 @@ module.exports = function (app) {
   GetHistoryScore(app);
   GetHistoryRecyclables(app);
   GetInfor(app);
+  GetLocalRecy(app);
 };

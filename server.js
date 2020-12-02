@@ -42,6 +42,7 @@ const options = {
     "./src/Controllers/Member/getHistoryScrore.js",
     "./src/Controllers/Recyclables/GetHistoryRecyclables.js",
     "./src/Controllers/User/GetInfor.js",
+    "./src/Controllers/Carrier/Recyclables/GetLocalRecy.js",
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);

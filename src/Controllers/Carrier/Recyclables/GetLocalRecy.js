@@ -1,16 +1,16 @@
-const db = require("../../Connect/Connect");
-const getStatusReady = require("../../model/Recyclables/GetStatusReady.model");
+const db = require("../../../Connect/Connect");
+const GetLocalRecy = require("../../../model/Carrier/Recyclables/GetLocalRecy.model");
 module.exports = function (app) {
   /**
    * @swagger
    *
-   * /getStatusReady/{Token}:
+   * /GetLocalRecy/{TimeLine}:
    *   get:
    *    tags:
-   *    - Recyclables
+   *    - Carrier
    *    parameters:
-   *        - name: Token
-   *          description: Token
+   *        - name: TimeLine
+   *          description: TimeLine
    *          in: path
    *          type: string
    *          required: true
@@ -20,10 +20,9 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.get("/getStatusReady/:Token/", function (req, res) {
-    var Token = req.params.Token;
-    
-    getStatusReady(db, Token, function (dataString,data) {
+  app.get("/GetLocalRecy/:TimeLine/", function (req, res) {
+    var TimeLine = req.params.TimeLine;
+    GetLocalRecy(db, TimeLine, function (dataString, data) {
       res.json({
         dataString: dataString,
         data: data,

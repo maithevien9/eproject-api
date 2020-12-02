@@ -1,5 +1,5 @@
 var jwtDecode = require("jwt-decode");
-module.exports = function (db, token, IDlevel, callback) {
+module.exports = function (db, token, IDlevel, CreateAtTime, callback) {
   var dataString = "";
   var ID = "";
   let ts = Date.now();
@@ -30,7 +30,8 @@ module.exports = function (db, token, IDlevel, callback) {
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString);
     } else {
-      var sql = `insert into recyclables VALUES (null,'${IDlevel}', false, '${ID}')`;
+      console.log("/" + CreateAtTime);
+      var sql = `insert into recyclables VALUES (null,'${IDlevel}', false, '${ID}', '${CreateAtTime}')`;
       var sql2 = `select ID from recyclables  WHERE IDLevel = '${IDlevel}' and IDuser = '${ID}' ORDER BY id DESC LIMIT 1`;
       // var sql2 = `UPDATE member SET Score = Score + ${ScoreLv} WHERE ID =  ${ID}`;
       db.query(sql, function (err, results, fields) {

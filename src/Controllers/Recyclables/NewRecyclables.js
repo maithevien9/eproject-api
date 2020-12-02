@@ -19,9 +19,12 @@ module.exports = function (app) {
    *                type: string
    *              IDlevel:
    *                type: string
+   *              CreateAtTime:
+   *                type: string
    *            required:
    *                - token
    *                - IDlevel
+   *                - CreateAtTime
    *    responses:
    *      '201':
    *        description: A successful response
@@ -29,10 +32,17 @@ module.exports = function (app) {
    *        description: login already exists
    */
   app.post("/NewRecyclables", function (req, res) {
-    NewRecyclables(db, req.body.token, req.body.IDlevel, function (dataString) {
-      res.json({
-        dataString: dataString,
-      });
-    });
+    console.log("Time" + req.body.CreateAtTime);
+    NewRecyclables(
+      db,
+      req.body.token,
+      req.body.IDlevel,
+      req.body.CreateAtTime,
+      function (dataString) {
+        res.json({
+          dataString: dataString,
+        });
+      }
+    );
   });
 };

@@ -21,7 +21,7 @@ module.exports = function (db, Token, callback) {
           throw err;
         } else {
           data = JSON.parse(JSON.stringify(results));
-          console.log(data.length);
+          // console.log(data);
           if (data.length === 0) {
             dataString = "Handled";
             callback(dataString, data);
@@ -32,7 +32,7 @@ module.exports = function (db, Token, callback) {
         }
       });
     } else {
-      callback(dataString);
+      callback(dataString, data);
     }
   }
 };
