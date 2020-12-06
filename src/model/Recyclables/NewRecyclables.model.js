@@ -1,5 +1,7 @@
 var jwtDecode = require("jwt-decode");
+
 module.exports = function (db, token, IDlevel, CreateAtTime, callback) {
+  console.log("hihi");
   var dataString = "";
   var ID = "";
   let ts = Date.now();
@@ -47,7 +49,7 @@ module.exports = function (db, token, IDlevel, CreateAtTime, callback) {
               IDs = JSON.parse(JSON.stringify(results2));
               var IDRy = IDs[0].ID;
               console.log(IDRy);
-              var sql3 = `insert into historyrecyclables VALUES (null, ${IDRy}, ${ID},"Chờ vận chuyển", null, "${dateTime}")`;
+              var sql3 = `insert into historyrecyclables VALUES (null, ${IDRy}, ${ID},"Chờ vận chuyển", null, "${dateTime}" ,${ID})`;
               db.query(sql3, function (err, results, fields) {
                 if (err) {
                   throw err;

@@ -1,5 +1,5 @@
 var jwtDecode = require("jwt-decode");
-module.exports = function (db, Name, Detail, token, callback) {
+module.exports = function (db, Name, Detail, token, IDUser, callback) {
   var dataString = "";
   var ID = "";
   let ts = Date.now();
@@ -33,7 +33,7 @@ module.exports = function (db, Name, Detail, token, callback) {
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString);
     } else {
-      var sql = `insert into Notify VALUES (null,'${Name}', '${Detail}', ${ID}, "${dateTime}",${ID})`;
+      var sql = `insert into Notify VALUES (null,'${Name}', '${Detail}', ${IDUser}, "${dateTime}",${ID})`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;

@@ -16,6 +16,9 @@ var GetHistoryScore = require("./Member/getHistoryScrore");
 var GetHistoryRecyclables = require("./Recyclables/GetHistoryRecyclables");
 var GetInfor = require("./User/GetInfor");
 var GetLocalRecy = require("./Carrier/Recyclables/GetLocalRecy");
+var ConfirmRecy = require("./Carrier/Recyclables/ConfirmRecy");
+var CreateNotifyAD = require("./Carrier/Recyclables/CreateNotityAD");
+var RecySuccess = require("./Carrier/Recyclables/RecySuccess");
 module.exports = function (app) {
   console.log("this is to to Controllers");
   Login(app);
@@ -36,4 +39,7 @@ module.exports = function (app) {
   GetHistoryRecyclables(app);
   GetInfor(app);
   GetLocalRecy(app);
+  ConfirmRecy(app);
+  CreateNotifyAD(app);
+  RecySuccess(app);
 };

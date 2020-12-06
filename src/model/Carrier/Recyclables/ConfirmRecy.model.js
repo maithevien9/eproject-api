@@ -1,5 +1,5 @@
 var jwtDecode = require("jwt-decode");
-module.exports = function (db, Name, Detail, token, callback) {
+module.exports = function (db, token, IDRecy, IDUser, callback) {
   var dataString = "";
   var ID = "";
   let ts = Date.now();
@@ -13,13 +13,10 @@ module.exports = function (db, Name, Detail, token, callback) {
   var min = date_ob.getMinutes();
   var sec = date_ob.getSeconds();
 
-  console.log(
-    year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec
-  );
   var dateTime =
     year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
-  if (Name == null && Detail == null && token == null) {
-    dataString = "KHONG_THANH_CONG";
+  if (IDRecy == null && token == null) {
+    dataString = "KHONG_THANH_CONG1";
     callback(dataString);
   } else {
     try {
@@ -33,13 +30,21 @@ module.exports = function (db, Name, Detail, token, callback) {
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString);
     } else {
-      var sql = `insert into Notify VALUES (null,'${Name}', '${Detail}', ${ID}, "${dateTime}",${ID})`;
+      var sql = `UPDATE recyclables SET STATUS = 1  WHERE ID = ${IDRecy}`;
+
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;
         } else {
-          dataString = "THANH_CONG";
-          callback(dataString);
+          var sql3 = `insert into historyrecyclables VALUES (null, ${IDRecy}, ${IDUser},"Xác nhận vận chuyển", null, "${dateTime}",${ID})`;
+          db.query(sql3, function (err, results, fields) {
+            if (err) {
+              throw err;
+            } else {
+              dataString = "THANH_CONG";
+              callback(dataString);
+            }
+          });
         }
       });
     }

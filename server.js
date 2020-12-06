@@ -43,6 +43,9 @@ const options = {
     "./src/Controllers/Recyclables/GetHistoryRecyclables.js",
     "./src/Controllers/User/GetInfor.js",
     "./src/Controllers/Carrier/Recyclables/GetLocalRecy.js",
+    "./src/Controllers/Carrier/Recyclables/ConfirmRecy.js",
+    "./src/Controllers/Carrier/Recyclables/CreateNotityAD.js",
+    "./src/Controllers/Carrier/Recyclables/RecySuccess.js",
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);

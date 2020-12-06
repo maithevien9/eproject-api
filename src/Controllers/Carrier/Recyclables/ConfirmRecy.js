@@ -1,13 +1,13 @@
-const db = require("../../Connect/Connect");
-const CreateNotity = require("../../model/Notify/CreateNotity.model");
+const db = require("../../../Connect/Connect");
+const ConfirmRecy = require("../../../model/Carrier/Recyclables/ConfirmRecy.model");
 module.exports = function (app) {
   /**
    * @swagger
    *
-   * /CreateNotify:
+   * /ConfirmRecy:
    *   post:
    *    tags:
-   *    - Notify
+   *    - Carrier
    *    parameters:
    *        - name: reqBody
    *          description: request Body
@@ -15,28 +15,28 @@ module.exports = function (app) {
    *          schema:
    *            type: object
    *            properties:
-   *              Name:
-   *                type: string
-   *              Detail:
-   *                type: string
    *              token:
    *                type: string
+   *              IDRecy:
+   *                type: string
+   *              IDUser:
+   *                type: string
    *            required:
-   *                - Name
-   *                - Detail
    *                - token
+   *                - IDRecy
+   *                - IDUser
    *    responses:
    *      '201':
    *        description: A successful response
    *      '422':
    *        description: login already exists
    */
-  app.post("/CreateNotify", function (req, res) {
-    CreateNotity(
+  app.post("/ConfirmRecy", function (req, res) {
+    ConfirmRecy(
       db,
-      req.body.Name,
-      req.body.Detail,
       req.body.token,
+      req.body.IDRecy,
+      req.body.IDUser,
       function (dataString) {
         res.json({
           dataString: dataString,
