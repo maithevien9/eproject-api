@@ -1,9 +1,8 @@
 var jwtDecode = require("jwt-decode");
 
-module.exports = function (db, token, IDlevel, CreateAtTime, callback) {
-  console.log("hihi");
+module.exports = function (db, ID, price, InforRecyclable, callback) {
   var dataString = "";
-  var ID = "";
+
   let ts = Date.now();
 
   let date_ob = new Date(ts);
@@ -17,24 +16,16 @@ module.exports = function (db, token, IDlevel, CreateAtTime, callback) {
 
   var dateTime =
     year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
-  if (IDlevel == null && token == null) {
-    dataString = "KHONG_THANH_CONG1";
+  if (ID == null) {
+    dataString = "KHONG_THANH_CONG";
     callback(dataString);
   } else {
-    try {
-      var decoded = jwtDecode(token);
-      ID = decoded.ID;
-      console.log(ID);
-    } catch (err) {
-      dataString = "KHONG_THANH_CONG";
-      console.log(err);
-    }
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString);
     } else {
-      console.log("/" + CreateAtTime);
-      var sql = `insert into recyclables VALUES (null,'${IDlevel}', false, '${ID}', '${CreateAtTime}')`;
-      var sql2 = `select ID from recyclables  WHERE IDLevel = '${IDlevel}' and IDuser = '${ID}' ORDER BY id DESC LIMIT 1`;
+      var sql = `INSERT INTO recyclables VALUES (null,'${ID}','${dateTime}',1,${price})`;
+
+      var sql2 = `select ID from recyclables  WHERE CreateAtTime = '${dateTime}' and IDuser = '${ID}' ORDER BY id DESC LIMIT 1`;
       // var sql2 = `UPDATE member SET Score = Score + ${ScoreLv} WHERE ID =  ${ID}`;
       db.query(sql, function (err, results, fields) {
         if (err) {
@@ -48,20 +39,22 @@ module.exports = function (db, token, IDlevel, CreateAtTime, callback) {
             } else {
               IDs = JSON.parse(JSON.stringify(results2));
               var IDRy = IDs[0].ID;
-              console.log(IDRy);
-              var sql3 = `insert into historyrecyclables VALUES (null, ${IDRy}, ${ID},"Chờ vận chuyển", null, "${dateTime}" ,${ID})`;
-              db.query(sql3, function (err, results, fields) {
-                if (err) {
-                  throw err;
-                } else {
-                  dataString = "THANH_CONG";
-                  callback(dataString);
-                }
+
+              InforRecyclable.map((e) => {
+                var sql4 = `insert into recyclablesdetail VALUES (${IDRy}, ${e.ID}, ${e.amount})`;
+                db.query(sql4, function (err, results, fields) {
+                  if (err) {
+                    throw err;
+                  } else {
+                  }
+                });
               });
             }
           });
         }
       });
+      dataString = "THANH_CONG";
+      callback(dataString);
     }
   }
 };

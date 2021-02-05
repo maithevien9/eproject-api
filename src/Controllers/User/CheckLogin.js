@@ -1,5 +1,7 @@
 const db = require("../../Connect/Connect");
 const CheckLogin = require("../../model/User/CheckLogin.model");
+const verifyToken = require("../JWT/verifyToken");
+const jwt = require("jsonwebtoken");
 module.exports = function (app) {
   /**
    * @swagger
@@ -20,10 +22,16 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.get("/CheckLogin/:Token/", function (req, res) {
-    var Token = req.params.Token;
-    console.log(Token);
-    CheckLogin(db, Token, function (dataString) {
+  app.get("/CheckLogin/", verifyToken, function (req, res) {
+    var ID;
+    jwt.verify(req.token, "key", (err, authData) => {
+      if (err) {
+        dataString = "KHONG_THANH_CONG";
+      } else {
+        ID = authData.ID;
+      }
+    });
+    CheckLogin(db, ID, function (dataString) {
       res.json({
         dataString: dataString,
       });

@@ -17,13 +17,10 @@ module.exports = function (app) {
    *            properties:
    *              IDRece:
    *                type: string
-   *              Token:
-   *                type: string
    *              Status:
    *                type: string
    *            required:
    *                - IDRece
-   *                - Token
    *                - Status
    *    responses:
    *      '201':
@@ -35,7 +32,6 @@ module.exports = function (app) {
     ChangeStatusRece(
       db,
       req.body.IDRece,
-      req.body.Token,
       req.body.Status,
       function (dataString) {
         res.json({

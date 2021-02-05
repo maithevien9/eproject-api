@@ -1,10 +1,12 @@
 const db = require("../../Connect/Connect");
 const GetInfor = require("../../model/User/GetInfor.model");
+const verifyToken = require("../JWT/verifyToken");
+const jwt = require("jsonwebtoken");
 module.exports = function (app) {
   /**
    * @swagger
    *
-   * /GetInfor/{Token}:
+   * /GetInfor:
    *   get:
    *    tags:
    *    - User
@@ -20,10 +22,16 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.get("/GetInfor/:Token/", function (req, res) {
-    var Token = req.params.Token;
-
-    GetInfor(db, Token, function (dataString, data) {
+  app.get("/GetInfor/", verifyToken, function (req, res) {
+    var ID;
+    jwt.verify(req.token, "key", (err, authData) => {
+      if (err) {
+        throw err;
+      } else {
+        ID = authData.ID;
+      }
+    });
+    GetInfor(db, ID, function (dataString, data) {
       res.json({
         dataString: dataString,
         data: data,

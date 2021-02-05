@@ -1,5 +1,7 @@
 const db = require("../../Connect/Connect");
 const CreateNotity = require("../../model/Notify/CreateNotity.model");
+const verifyToken = require("../JWT/verifyToken");
+const jwt = require("jsonwebtoken");
 module.exports = function (app) {
   /**
    * @swagger
@@ -31,17 +33,19 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.post("/CreateNotify", function (req, res) {
-    CreateNotity(
-      db,
-      req.body.Name,
-      req.body.Detail,
-      req.body.token,
-      function (dataString) {
-        res.json({
-          dataString: dataString,
-        });
+  app.post("/CreateNotify", verifyToken, function (req, res) {
+    var ID;
+    jwt.verify(req.token, "key", (err, authData) => {
+      if (err) {
+        throw err;
+      } else {
+        ID = authData.ID;
       }
-    );
+    });
+    CreateNotity(db, req.body.Name, req.body.Detail, ID, function (dataString) {
+      res.json({
+        dataString: dataString,
+      });
+    });
   });
 };

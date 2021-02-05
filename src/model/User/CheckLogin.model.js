@@ -1,21 +1,14 @@
 var jwtDecode = require("jwt-decode");
-module.exports = function (db, Token, callback) {
+module.exports = function (db, ID, callback) {
   var dataString = "";
 
-  if (Token === "") {
+  if (ID === "") {
     dataString = "KHONG_THANH_CONG1";
 
     callback(dataString);
   } else {
-    try {
-      var decoded = jwtDecode(Token);
-      var IDuser = decoded.ID;
-      console.log(IDuser);
-    } catch (err) {
-      dataString = "KHONG_THANH_CONG";
-    }
     if (dataString != "KHONG_THANH_CONG") {
-      var sql = `SELECT ID, User, PassWord FROM user where ID = ${IDuser}`;
+      var sql = `SELECT ID, User, PassWord FROM user where ID = ${ID}`;
       db.query(sql, function (err, results, fields) {
         if (err) {
           throw err;

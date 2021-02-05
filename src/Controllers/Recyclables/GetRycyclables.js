@@ -1,18 +1,18 @@
 const db = require("../../Connect/Connect");
-const GetNotify = require("../../model/Notify/GetNotify.model");
+const GetRycyclables = require("../../model/Recyclables/GetRycyclables");
 const verifyToken = require("../JWT/verifyToken");
 const jwt = require("jsonwebtoken");
 module.exports = function (app) {
   /**
    * @swagger
    *
-   * /GetNotify/{Token}:
-   *   get:
+   * /NewRecyclables/{IDStatus}::
+   *   post:
    *    tags:
-   *    - Notify
+   *    - Recyclables
    *    parameters:
-   *        - name: Token
-   *          description: Token
+   *        - name: IDStatus
+   *          description: IDStatus
    *          in: path
    *          type: string
    *          required: true
@@ -22,7 +22,7 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.get("/GetNotify/", verifyToken, function (req, res) {
+  app.get("/GetRycyclables/:IDStatus", verifyToken, function (req, res) {
     var ID;
     jwt.verify(req.token, "key", (err, authData) => {
       if (err) {
@@ -31,7 +31,7 @@ module.exports = function (app) {
         ID = authData.ID;
       }
     });
-    GetNotify(db, ID, function (dataString, data) {
+    GetRycyclables(db, ID, req.params.IDStatus, function (dataString, data) {
       res.json({
         dataString: dataString,
         data: data,

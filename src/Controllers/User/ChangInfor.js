@@ -1,5 +1,7 @@
 const db = require("../../Connect/Connect");
 var changInfor = require("../../model/User/ChangInfor.model");
+const verifyToken = require("../JWT/verifyToken");
+const jwt = require("jsonwebtoken");
 module.exports = function (app) {
   /**
    * @swagger
@@ -40,10 +42,18 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.put("/ChangInfor", function (req, res) {
+  app.put("/ChangInfor", verifyToken, function (req, res) {
+    var ID;
+    jwt.verify(req.token, "key", (err, authData) => {
+      if (err) {
+        dataString = "KHONG_THANH_CONG";
+      } else {
+        ID = authData.ID;
+      }
+    });
     changInfor(
       db,
-      req.body.Token,
+      ID,
       req.body.Name,
       req.body.Address,
       req.body.Phone,
