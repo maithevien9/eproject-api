@@ -1,18 +1,18 @@
 const db = require("../../Connect/Connect");
-const CheckLogin = require("../../model/User/CheckLogin.model");
+const GetRycycalbleDetail = require("../../model/Recyclables/GetRycycalbleDetail.model");
 const verifyToken = require("../JWT/verifyToken");
 const jwt = require("jsonwebtoken");
 module.exports = function (app) {
   /**
    * @swagger
    *
-   * /CheckLogin/{Token}:
-   *   get:
+   * /GetRycyclableDetail/{ID}:
+   *   post:
    *    tags:
-   *    - User
+   *    - Recyclables
    *    parameters:
-   *        - name: Token
-   *          description: Token
+   *        - name: IDStatus
+   *          description: IDStatus
    *          in: path
    *          type: string
    *          required: true
@@ -22,19 +22,11 @@ module.exports = function (app) {
    *      '422':
    *        description: login already exists
    */
-  app.get("/CheckLogin/", verifyToken, function (req, res) {
-    var ID;
-    var token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, "key", (err, authData) => {
-      if (err) {
-        dataString = "KHONG_THANH_CONG";
-      } else {
-        ID = authData.ID;
-      }
-    });
-    CheckLogin(db, ID, function (dataString) {
+  app.get("/GetRycyclableDetail/:ID", function (req, res) {
+    GetRycycalbleDetail(db, req.params.ID, function (dataString, data) {
       res.json({
         dataString: dataString,
+        data: data,
       });
     });
   });

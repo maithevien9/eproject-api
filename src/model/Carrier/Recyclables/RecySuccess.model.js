@@ -22,10 +22,10 @@ module.exports = function (db, token, IDRecy, IDUser, callback) {
     try {
       var decoded = jwtDecode(token);
       ID = decoded.ID;
-      console.log(ID);
+       (ID);
     } catch (err) {
       dataString = "KHONG_THANH_CONG";
-      console.log(err);
+       (err);
     }
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString);

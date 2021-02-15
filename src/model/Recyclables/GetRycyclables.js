@@ -1,6 +1,6 @@
 module.exports = function (db, ID, IDStatus, callback) {
   var dataString = "";
-  console.log(ID);
+   (ID);
   var data = [];
   if (ID == null) {
     dataString = "KHONG_THANH_CONG";
@@ -16,7 +16,7 @@ module.exports = function (db, ID, IDStatus, callback) {
           throw err;
         } else {
           data = JSON.parse(JSON.stringify(results));
-          console.log(data);
+           (data);
           dataString = "THANH_CONG";
           callback(dataString, data);
         }

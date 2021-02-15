@@ -34,18 +34,22 @@ module.exports = function (app) {
    *        description: login already exists
    */
   app.post("/NewRecyclables", verifyToken, function (req, res) {
-    var ID;
-    jwt.verify(req.token, "key", (err, authData) => {
+    var ID;   
+    var token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, "key", (err, authData) => {
       if (err) {
         throw err;
       } else {
         ID = authData.ID;
       }
     });
+    // const file = req.files.photo;
     NewRecyclables(
       db,
       ID,
-      req.body.price,
+      req.body.Price,
+      req.body.Adresss,
+      req.body.Phone,
       req.body.InforRecyclable,
       function (dataString) {
         res.json({

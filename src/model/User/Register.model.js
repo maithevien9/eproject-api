@@ -1,5 +1,5 @@
 module.exports = function (db, User, PassWord, callback) {
-  console.log("this is Register");
+   ("this is Register");
   var dataString = "";
   var ID = "";
 
@@ -25,22 +25,18 @@ module.exports = function (db, User, PassWord, callback) {
                 } else {
                   IDs = JSON.parse(JSON.stringify(results));
                   ID = IDs[0].ID;
-                  console.log(ID);
+                   (ID);
 
                   sql4 = `insert into inforuser value (${ID} , null,null,null,null,null,1)`;
-                  sql5 = ` insert into member VALUES (${ID},0)`;
+               
 
                   db.query(sql4, function (err, results, fields) {
                     if (err) {
                       throw err;
                     } else {
-                      db.query(sql5, function (err, results, fields) {
-                        if (err) {
-                          throw err;
-                        }
                         dataString = "THANH_CONG";
                         callback(dataString);
-                      });
+                     
                     }
                   });
                 }

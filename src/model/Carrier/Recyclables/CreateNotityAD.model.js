@@ -13,7 +13,7 @@ module.exports = function (db, Name, Detail, token, IDUser, callback) {
   var min = date_ob.getMinutes();
   var sec = date_ob.getSeconds();
 
-  console.log(
+   (
     year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec
   );
   var dateTime =
@@ -25,10 +25,10 @@ module.exports = function (db, Name, Detail, token, IDUser, callback) {
     try {
       var decoded = jwtDecode(token);
       ID = decoded.ID;
-      console.log(ID);
+       (ID);
     } catch (err) {
       dataString = "KHONG_THANH_CONG";
-      console.log(err);
+       (err);
     }
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString);

@@ -35,7 +35,6 @@ module.exports = function (app) {
    *        description: login already exists
    */
   app.post("/CreateNotifyAD", function (req, res) {
-    console.log(req.body.IDUser);
     CreateNotityAD(
       db,
       req.body.Name,

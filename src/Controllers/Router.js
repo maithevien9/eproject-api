@@ -4,14 +4,13 @@ var ChangInfor = require("./User/ChangInfor");
 var CheckLogin = require("./User/CheckLogin");
 var NewRecyclables = require("./Recyclables/NewRecyclables");
 var ChangeStatusRece = require("./Recyclables/ChangStatusRecy");
-
 var CreateNotify = require("./Notify/CreateNotity");
 var GetNotify = require("./Notify/GetNotify");
-
 var GetInfor = require("./User/GetInfor");
 var GetRycyclables = require("./Recyclables/GetRycyclables");
+var GetRycyclableDetail = require("./Recyclables/GetRycycalbleDetail")
+var GetRycyclablesFull = require("./Recyclables/GetRycyclablesFull")
 module.exports = function (app) {
-  console.log("this is to to Controllers");
   Login(app);
   Register(app);
   ChangInfor(app);
@@ -22,4 +21,6 @@ module.exports = function (app) {
   GetNotify(app);
   GetInfor(app);
   GetRycyclables(app);
+  GetRycyclableDetail(app);
+  GetRycyclablesFull(app);
 };

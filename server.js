@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-
+var fileUpload = require("express-fileupload");
 const app = express();
 var Router = require("./src/Controllers/Router");
 const db = require("./src/Connect/Connect");
@@ -36,11 +36,15 @@ const options = {
     "./src/Controllers/Notify/GetNotify.js",
     "./src/Controllers/User/GetInfor.js",
     "./src/Controllers/Recyclables/GetRycyclables.js",
+    "./src/Controllers/Recyclables/GetRycycalbleDetail.js",
+    "./src/Controllers/Recyclables/recyclablesFull.js",
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use(express.static('public'));
 app.use(cors());
+app.use(fileUpload());
 app.use(express.json());
 // app.use(bodyParser.json());
 app.use(

@@ -24,7 +24,8 @@ module.exports = function (app) {
    */
   app.get("/GetNotify/", verifyToken, function (req, res) {
     var ID;
-    jwt.verify(req.token, "key", (err, authData) => {
+    var token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, "key", (err, authData) => {
       if (err) {
         throw err;
       } else {

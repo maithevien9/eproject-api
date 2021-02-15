@@ -12,7 +12,7 @@ module.exports = function (db, Name, Detail, ID, callback) {
   var min = date_ob.getMinutes();
   var sec = date_ob.getSeconds();
 
-  console.log(
+   (
     year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec
   );
   var dateTime =

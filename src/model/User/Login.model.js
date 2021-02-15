@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 module.exports = async function (db, User, PassWord, callback) {
-  console.log("this is to to Login");
+   ("this is to to Login");
   var dataString = "";
   var token = "";
   var data = [];
@@ -21,7 +21,7 @@ module.exports = async function (db, User, PassWord, callback) {
 
         dataString = "THANH_CONG";
         jwt.sign({ ID: data[0].ID }, "key", (err, token) => {
-          console.log(token);
+           (token);
           callback(dataString, data, token);
         });
       } else {
