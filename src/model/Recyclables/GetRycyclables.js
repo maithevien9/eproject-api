@@ -9,7 +9,7 @@ module.exports = function (db, ID, IDStatus, callback) {
     if (dataString === "KHONG_THANH_CONG") {
       callback(dataString, data);
     } else {
-      var sql = `SELECT * FROM recyclables WHERE IDStatus = ${IDStatus} and IDuser = ${ID}`;
+      var sql = `SELECT * FROM recyclables WHERE IDStatus = ${IDStatus} and IDuser = ${ID} ORDER BY CreateAtTime DESC`;
 
       db.query(sql, function (err, results, fields) {
         if (err) {
