@@ -1,5 +1,4 @@
 module.exports = function (db, User, PassWord, callback) {
-   ("this is Register");
   var dataString = "";
   var ID = "";
 

@@ -1,9 +1,9 @@
-const db = require("../../Connect/Connect");
-const NewRecyclables = require("../../model/Recyclables/NewRecyclables.model");
-const verifyToken = require("../JWT/verifyToken");
-const jwt = require("jsonwebtoken");
-module.exports = function (app) {
-    /**
+const db = require('../../Connect/Connect');
+const NewRecyclables = require('../../model/Recyclables/NewRecyclables.model');
+const verifyToken = require('../JWT/verifyToken');
+const jwt = require('jsonwebtoken');
+module.exports = function(app) {
+	/**
      * @swagger
      *
      * /NewRecyclables:
@@ -33,30 +33,23 @@ module.exports = function (app) {
      *      '422':
      *        description: login already exists
      */
-    app.post("/NewRecyclables", verifyToken, function (req, res) {
-        var ID;
-        var token = req.headers.authorization.split(" ")[1];
-        jwt.verify(token, "key", (err, authData) => {
-            if (err) {
-                throw err;
-            } else {
-                ID = authData.ID;
-            }
-        });
-        // const file = req.files.photo;
-        console.log(req.body.Address + "hihi");
-        NewRecyclables(
-            db,
-            ID,
-            req.body.Price,
-            req.body.Address,
-            req.body.Phone,
-            req.body.InforRecyclable,
-            function (dataString) {
-                res.json({
-                    dataString: dataString
-                });
-            }
-        );
-    });
+	app.post('/NewRecyclables', verifyToken, function(req, res) {
+		var ID;
+		var token = req.headers.authorization.split(' ')[1];
+		jwt.verify(token, 'key', (err, authData) => {
+			if (err) {
+				throw err;
+			} else {
+				ID = authData.ID;
+			}
+		});
+
+		NewRecyclables(db, ID, req.body.Price, req.body.Address, req.body.Phone, req.body.InforRecyclable, function(
+			dataString
+		) {
+			res.json({
+				dataString: dataString
+			});
+		});
+	});
 };

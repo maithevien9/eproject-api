@@ -21,8 +21,6 @@ module.exports = function (db, ID, IDStatus, callback) {
           callback(dataString, data);
         }
       });
-      //   dataString = "THANH_CONG";
-      //   callback(dataString);
     }
   }
 };

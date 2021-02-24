@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 module.exports = async function (db, User, PassWord, callback) {
-   ("this is to to Login");
   var dataString = "";
   var token = "";
   var data = [];
