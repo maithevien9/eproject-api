@@ -1,4 +1,4 @@
-const db = require("../../Connect/Connect");
+const Connect = require("../../Connect/Connect");
 const GetRycyclablesFull = require("../../model/Recyclables/GetRycyclablesFull.model");
 const verifyToken = require("../JWT/verifyToken");
 module.exports = function (app) {
@@ -16,7 +16,7 @@ module.exports = function (app) {
    *        description: login already exists
    */
   app.get("/GetRycyclablefull", function (req, res) {
-    GetRycyclablesFull(db, function (dataString, data) {
+    GetRycyclablesFull(Connect, function (dataString, data) {
       res.json({
         dataString: dataString,
         data: data,
