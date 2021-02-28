@@ -23,9 +23,11 @@ connection.connect(function(err) {
 });      
 
 module.exports = connection;
-
+ 
 // host: "us-cdbr-east-03.cleardb.com",
 //   user: "bf525d49fe0172",
 //   password: "026c8444",
 //   database: "heroku_e3fa5a40dc31d04",
 // mysql://bf525d49fe0172:026c8444@us-cdbr-east-03.cleardb.com/heroku_e3fa5a40dc31d04?reconnect=true
+
+
