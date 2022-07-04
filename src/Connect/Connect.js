@@ -8,6 +8,7 @@ var connection = mysql.createConnection({
   user: 'root',
   password: 'root',
   database: 'eproject',
+  port: 8889,
   // host: "localhost",
   // user: "root",
   // password: "",
