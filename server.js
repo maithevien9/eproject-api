@@ -79,7 +79,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/upload', async function (req, res, next) {
-  const result = await handleImage(req.files);
+  const result = await handleImage(req.files.image);
 
   res.send(result || '');
 });

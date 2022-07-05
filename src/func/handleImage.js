@@ -6,7 +6,6 @@ const json = require('./tfjs_model/model.json');
 
 module.exports = handleImage = async (imgShow) => {
   const model = await tf.loadLayersModel('http://localhost:8001/tfjs_model/model.json');
-  let path = 'https://i.pinimg.com/236x/3d/90/d0/3d90d0e34acae40b4e5740418f9d558e--peacock-colors-peacock-feathers.jpg';
   let img2 = tf.browser.fromPixels({ data: new Uint8Array(imgShow.data), width: 200, height: 200 });
   let tensor = img2.resizeNearestNeighbor([128, 128]).toFloat().div(255).expandDims();
   let predictions = await model.predict(tensor);
