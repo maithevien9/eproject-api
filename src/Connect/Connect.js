@@ -16,12 +16,13 @@ var connection = mysql.createConnection({
 });
 // connection.connect(function (err) {
 //   if (err) console.log(err);
+
 // });
-connection.connect(function (err) {
-  if (err) {
-    console.log('error when connecting to db:', err);
-  }
-});
+// connection.connect(function (err) {
+//   if (err) {
+//     console.log('error when connecting to db:', err);
+//   }
+// });
 
 module.exports = connection;
 
