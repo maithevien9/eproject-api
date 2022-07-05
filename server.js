@@ -16,6 +16,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
 const handleImage = require('./src/func/handleImage');
 const multer = require('multer');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 
 // const upload = multer({ dest: 'uploads/' });
 
@@ -77,6 +79,8 @@ app.options('*', cors());
 app.get('/', function (req, res) {
   res.send('hello');
 });
+
+// global.document = new JSDOM(html).window.document;
 
 app.post('/upload', async function (req, res, next) {
   const result = await handleImage(req.files.image);

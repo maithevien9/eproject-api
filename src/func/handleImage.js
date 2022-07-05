@@ -1,12 +1,18 @@
 const { Image } = require('canvas');
 const tf = require('@tensorflow/tfjs');
-const { createCanvas } = require('canvas');
-const canvas = createCanvas(200, 200);
-const json = require('./tfjs_model/model.json');
+var FileReader = require('filereader');
+const { createCanvas, loadImage } = require('canvas');
+const fs = require('fs');
 
 module.exports = handleImage = async (imgShow) => {
+  const img = await loadImage(imgShow.data);
+  const canvas = await createCanvas(200, 200);
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, img.width / 4, img.height / 4);
+
   const model = await tf.loadLayersModel('http://localhost:8001/tfjs_model/model.json');
-  let img2 = tf.browser.fromPixels({ data: new Uint8Array(imgShow.data), width: 200, height: 200 });
+  let img2 = tf.browser.fromPixels(canvas);
+
   let tensor = img2.resizeNearestNeighbor([128, 128]).toFloat().div(255).expandDims();
   let predictions = await model.predict(tensor);
   predictions = predictions.dataSync();
