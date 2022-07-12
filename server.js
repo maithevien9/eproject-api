@@ -48,6 +48,7 @@ const options = {
     './src/Controllers/Recyclables/GetRycyclables.js',
     './src/Controllers/Recyclables/GetRycycalbleDetail.js',
     './src/Controllers/Recyclables/recyclablesFull.js',
+    './src/Controllers/Gifts/get.js',
   ],
 };
 const swaggerSpec = swaggerJSDoc(options);
